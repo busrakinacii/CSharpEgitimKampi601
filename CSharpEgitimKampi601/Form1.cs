@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CSharpEgitimKampi601.Entities;
+using CSharpEgitimKampi601.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,26 @@ namespace CSharpEgitimKampi601
         public Form1()
         {
             InitializeComponent();
+        }
+        CustomerOperations customerOperations = new CustomerOperations();
+        private void btnList_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var customer = new Customer()
+            {
+                CustomerName = txtCustomerName.Text,
+                CustomerSurname = txtCustomerSurname.Text,
+                CustomerBalance = decimal.Parse(txtCustomerBalance.Text),
+                CustomerCity = txtCustomerCity.Text,
+                CustomerShoppingAmount = int.Parse(txtShoppingAmount.Text)
+            };
+
+            customerOperations.AddCustomer(customer);
+            MessageBox.Show("Müşteri Ekleme İşlemi Başarılı", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
