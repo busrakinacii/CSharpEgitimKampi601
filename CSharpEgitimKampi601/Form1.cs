@@ -21,7 +21,8 @@ namespace CSharpEgitimKampi601
         CustomerOperations customerOperations = new CustomerOperations();
         private void btnList_Click(object sender, EventArgs e)
         {
-
+            List<Customer> customers = customerOperations.GetAllCustomer();
+            dataGridView1.DataSource = customers;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
