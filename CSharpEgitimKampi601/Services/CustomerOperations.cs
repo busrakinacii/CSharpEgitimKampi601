@@ -49,5 +49,45 @@ namespace CSharpEgitimKampi601.Services
             }
             return customerList;
         }
+
+        public void DeleteCustomer(string id)
+        {
+            var connection = new MongoDbConnection();
+            var customerCollection = connection.GetCustomersCollection();
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(id));
+            customerCollection.DeleteOne(filter);
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            var connection = new MongoDbConnection();
+            var customerCollection = connection.GetCustomersCollection();
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(customer.CustomerId));
+            var updatedValue = Builders<BsonDocument>.Update
+                .Set("CustomerName", customer.CustomerName)
+                .Set("CustomerSurname", customer.CustomerSurname)
+                .Set("CustomerCity", customer.CustomerCity)
+                .Set("CustomerBalance", customer.CustomerBalance)
+                .Set("CustomerShoppingAmount", customer.CustomerShoppingAmount);
+            customerCollection.UpdateOne(filter, updatedValue);
+        }
+
+        public Customer GetCustomerById(string id)
+        {
+            var connection = new MongoDbConnection();
+            var customerCollection = connection.GetCustomersCollection();
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(id));
+            var result = customerCollection.Find(filter).FirstOrDefault();
+            return new Customer
+            {
+                CustomerBalance = decimal.Parse(result["CustomerBalance"].ToString()),
+                CustomerCity = result["CustomerCity"].ToString(),
+                CustomerId = id,
+                CustomerName = result["CustomerName"].ToString(),
+                CustomerSurname = result["CustomerSurname"].ToString(),
+                CustomerShoppingAmount = int.Parse(result["CustomerShoppingAmount"].ToString())
+            };
+        }
+
     }
 }
