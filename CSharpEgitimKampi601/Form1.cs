@@ -46,5 +46,21 @@ namespace CSharpEgitimKampi601
             customerOperations.DeleteCustomer(customerId);
             MessageBox.Show("Müşteri Başarıyla Silindi.");
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string id = txtCustomerId.Text;
+            var updateCustomer = new Customer()
+            {
+                CustomerId=id,
+                CustomerName = txtCustomerName.Text,
+                CustomerBalance = decimal.Parse(txtCustomerBalance.Text),
+                CustomerCity = txtCustomerCity.Text,
+                CustomerShoppingAmount = int.Parse(txtShoppingAmount.Text),
+                CustomerSurname = txtCustomerSurname.Text
+            };
+            customerOperations.UpdateCustomer(updateCustomer);
+            MessageBox.Show("Müşteri Başarıyla Güncellendi.");
+        }
     }
 }
