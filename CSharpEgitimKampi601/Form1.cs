@@ -39,5 +39,12 @@ namespace CSharpEgitimKampi601
             customerOperations.AddCustomer(customer);
             MessageBox.Show("Müşteri Ekleme İşlemi Başarılı", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string customerId = txtCustomerId.Text;
+            customerOperations.DeleteCustomer(customerId);
+            MessageBox.Show("Müşteri Başarıyla Silindi.");
+        }
     }
 }
