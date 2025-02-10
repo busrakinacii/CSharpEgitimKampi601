@@ -52,7 +52,7 @@ namespace CSharpEgitimKampi601
             string id = txtCustomerId.Text;
             var updateCustomer = new Customer()
             {
-                CustomerId=id,
+                CustomerId = id,
                 CustomerName = txtCustomerName.Text,
                 CustomerBalance = decimal.Parse(txtCustomerBalance.Text),
                 CustomerCity = txtCustomerCity.Text,
@@ -61,6 +61,13 @@ namespace CSharpEgitimKampi601
             };
             customerOperations.UpdateCustomer(updateCustomer);
             MessageBox.Show("Müşteri Başarıyla Güncellendi.");
+        }
+
+        private void btnGetByCustomerId_Click(object sender, EventArgs e)
+        {
+            string id = txtCustomerId.Text;
+            Customer customers = customerOperations.GetCustomerById(id);
+            dataGridView1.DataSource = new List<Customer> { customers };
         }
     }
 }
