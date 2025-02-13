@@ -76,6 +76,7 @@
             this.btnUpdate.TabIndex = 33;
             this.btnUpdate.Text = "Güncelle";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -87,6 +88,7 @@
             this.btnDelete.TabIndex = 32;
             this.btnDelete.Text = "Sil";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
@@ -98,6 +100,7 @@
             this.btnAdd.TabIndex = 31;
             this.btnAdd.Text = "Ekle";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnList
             // 

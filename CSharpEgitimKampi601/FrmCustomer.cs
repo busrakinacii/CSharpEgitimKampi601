@@ -35,5 +35,59 @@ namespace CSharpEgitimKampi601
         {
             GetAllCustomers();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string customerName = txtCustomerName.Text;
+            string customerSurname = txtCustomerSurname.Text;
+            string customerCity = txtCustomerCity.Text;
+            var connection = new NpgsqlConnection(connectionString);
+            connection.Open();
+            string query = "insert into Customers (CustomerName,CustomerSurname,CustomerCity) values (@customerName,@customerSurname,@customerCity)";
+            var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@customerName", customerName);
+            command.Parameters.AddWithValue("@customerSurname", customerSurname);
+            command.Parameters.AddWithValue("@customerCity", customerCity);
+            command.ExecuteNonQuery();
+            MessageBox.Show("Ekleme İşlemi Başarılı");
+            connection.Close();
+            GetAllCustomers();
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txtCustomerId.Text);
+            var connection = new NpgsqlConnection(connectionString);
+            connection.Open();
+            var query = "Delete From Customers where CustomerId=@customerId";
+            var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@customerId", id);
+            command.ExecuteNonQuery();
+            MessageBox.Show("Silme İşlemi Başarı ile Gerçekleştirildi.");
+            connection.Close();
+            GetAllCustomers();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string customerName = txtCustomerName.Text;
+            string customerSurname = txtCustomerSurname.Text;
+            string customerCity = txtCustomerCity.Text;
+            int id = int.Parse(txtCustomerId.Text);
+            var connection = new NpgsqlConnection(connectionString);
+            connection.Open();
+            var query = "Update Customers set CustomerName=@customerName,CustomerSurname=@customerSurname,CustomerCity=@customerCity where CustomerId=@customerId";
+            var command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@customerName", customerName);
+            command.Parameters.AddWithValue("@customerSurname", customerSurname);
+            command.Parameters.AddWithValue("@customerCity", customerCity);
+            command.Parameters.AddWithValue("@customerId", id);
+            command.ExecuteNonQuery();
+            MessageBox.Show("Güncelleme İşlemi Başarı ile Gerçekleştirildi.");
+            connection.Close();
+            GetAllCustomers();
+
+        }
     }
 }
