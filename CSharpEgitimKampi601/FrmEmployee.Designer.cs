@@ -100,6 +100,7 @@
             this.btnAdd.TabIndex = 45;
             this.btnAdd.Text = "Ekle";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnList
             // 
@@ -227,6 +228,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmEmployee";
             this.Text = "FrmEmployee";
+            this.Load += new System.EventHandler(this.FrmEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
